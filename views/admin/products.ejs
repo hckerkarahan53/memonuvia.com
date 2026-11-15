@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-side">
+      <div class="logo" style="color:var(--cream);margin-bottom:1.5rem">
+        <span>Memo<em>Nuvia</em></span>
+      </div>
+      <a href="/admin">Orders</a>
+      <a class="active" href="/admin/products">Products</a>
+      <a href="/shop">View storefront</a>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-header-row">
+        <h1 class="admin-page-title">Products</h1>
+        <button class="btn btn-primary btn-sm ui-press" type="button" id="syncBtn" <%= printifyReady ? '' : 'disabled' %>>
+          Sync from Printify
+        </button>
+      </div>
+      <p class="admin-msg" id="msg">
+        <%= printifyReady ? 'Pull Printify catalog into Supabase products table.' : 'Add PRINTIFY_API_KEY and PRINTIFY_SHOP_ID to enable sync.' %>
+        <% if (syncError) { %> · <%= syncError %><% } %>
+      </p>
+
+      <div class="table-wrap ui-lift">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th>Image</th>
+              <th>Name</th>
+              <th>Price</th>
+              <th>Collection</th>
+              <th>Printify</th>
+              <th>Active</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% if (!products.length) { %>
+              <tr><td colspan="7">No products yet. Sync from Printify or run npm run seed.</td></tr>
+            <% } %>
+            <% products.forEach(function(p) { %>
+              <tr data-id="<%= p.id %>">
+                <td>
+                  <% if (p.image || p.preview_image) { %>
+                    <img class="thumb-sm" src="<%= p.image || p.preview_image %>" alt="" />
+                  <% } %>
+                </td>
+                <td>
+                  <strong><%= p.name %></strong><br />
+                  <small><%= p.slug %></small>
+                </td>
+                <td>
+                  <input class="admin-price-input" type="number" step="0.01" min="0" value="<%= Number(p.price).toFixed(2) %>" data-field="price" />
+                </td>
+                <td>
+                  <input class="admin-price-input" type="text" value="<%= p.collection || '' %>" data-field="collection" />
+                </td>
+                <td>
+                  <small><%= p.printify_product_id || '—' %></small>
+                </td>
+                <td>
+                  <input type="checkbox" data-field="active" <%= p.active !== false ? 'checked' : '' %> />
+                </td>
+                <td>
+                  <button class="btn btn-ghost btn-sm ui-press save-product" type="button">Save</button>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script>
+    const msg = document.getElementById('msg');
+    document.getElementById('syncBtn')?.addEventListener('click', async () => {
+      msg.textContent = 'Syncing Printify catalog…';
+      const res = await fetch('/api/admin/printify/sync', { method: 'POST', credentials: 'same-origin' });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        msg.textContent = data.error || 'Sync failed';
+        return;
+      }
+      msg.textContent = `Synced ${data.synced || 0} products${data.persisted ? ' to Supabase' : ' (preview only)'}.`;
+      location.reload();
+    });
+
+    document.querySelectorAll('.save-product').forEach((btn) => {
+      btn.addEventListener('click', async () => {
+        const row = btn.closest('tr');
+        const id = row.getAttribute('data-id');
+        const price = Number(row.querySelector('[data-field="price"]').value);
+        const collection = row.querySelector('[data-field="collection"]').value.trim();
+        const active = row.querySelector('[data-field="active"]').checked;
+        msg.textContent = 'Saving…';
+        const res = await fetch(`/api/admin/products/${encodeURIComponent(id)}`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          credentials: 'same-origin',
+          body: JSON.stringify({ price, collection, active })
+        });
+        const data = await res.json().catch(() => ({}));
+        msg.textContent = res.ok ? 'Product saved.' : (data.error || 'Save failed');
+      });
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container section-center">
+    <p class="eyebrow"><%= status || 500 %></p>
+    <h1 class="section-title"><%= title || 'Error' %></h1>
+    <p class="section-sub"><%= message || 'Something went wrong.' %></p>
+    <div style="margin-top:1.5rem">
+      <a class="btn btn-primary" href="/">Back home</a>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

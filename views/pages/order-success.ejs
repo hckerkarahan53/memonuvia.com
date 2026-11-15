@@ -1,0 +1,33 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container section-center" style="max-width:640px">
+    <h1 class="section-title">Thank you</h1>
+    <p class="section-sub">Your keepsake order is confirmed. We’ll email updates as it moves to production.</p>
+    <% if (order) { %>
+      <div class="panel" style="margin-top:1.5rem;text-align:left">
+        <p><strong>Order:</strong> <%= order.order_number %></p>
+        <p><strong>Status:</strong> <%= order.status %></p>
+        <p><strong>Payment:</strong> <%= order.payment_status %></p>
+        <% if (order.printify_order_id) { %>
+          <p><strong>Printify:</strong> <%= order.printify_order_id %></p>
+        <% } %>
+        <% (order.items || []).forEach(function(item) { %>
+          <hr style="border:none;border-top:1px solid var(--line);margin:1rem 0" />
+          <p><strong><%= item.product_name %></strong></p>
+          <p>Text: <%= item.personalization_text %></p>
+          <% if (item.photo_url) { %>
+            <img class="thumb-sm" src="<%= item.photo_url %>" alt="Uploaded photo" />
+          <% } %>
+        <% }) %>
+      </div>
+    <% } %>
+    <div style="margin-top:1.5rem">
+      <a class="btn btn-primary" href="/shop">Create another slate</a>
+      <a class="btn btn-ghost" href="/track" style="margin-left:0.5rem">Track order</a>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

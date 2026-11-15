@@ -1,0 +1,68 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container" style="max-width:760px">
+    <h1 class="section-title" style="font-size:2.4rem">Checkout</h1>
+    <p class="section-sub" style="margin-bottom:1.5rem">Enter shipping details and pay securely with Stripe.</p>
+
+    <div class="panel" id="checkoutSummary" style="margin-bottom:1rem"></div>
+
+    <form class="panel form-grid" id="checkoutForm">
+      <div class="form-row">
+        <label for="customer_name">Full name</label>
+        <input id="customer_name" name="customer_name" required />
+      </div>
+      <div class="form-row">
+        <label for="customer_email">Email</label>
+        <input id="customer_email" name="customer_email" type="email" required />
+      </div>
+      <div class="form-row">
+        <label for="address1">Address</label>
+        <input id="address1" name="address1" required />
+      </div>
+      <div class="form-row">
+        <label for="address2">Apartment, suite (optional)</label>
+        <input id="address2" name="address2" />
+      </div>
+      <div class="checkout-address-row">
+        <div class="form-row">
+          <label for="city">City</label>
+          <input id="city" name="city" required />
+        </div>
+        <div class="form-row">
+          <label for="region">State / Region</label>
+          <input id="region" name="region" required />
+        </div>
+        <div class="form-row">
+          <label for="zip">ZIP</label>
+          <input id="zip" name="zip" required />
+        </div>
+      </div>
+      <div class="form-row">
+        <label for="country">Country</label>
+        <select id="country" name="country">
+          <option value="US">United States</option>
+          <option value="GB">United Kingdom</option>
+          <option value="DE">Germany</option>
+          <option value="FR">France</option>
+          <option value="TR">Türkiye</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <label for="phone">Phone</label>
+        <input id="phone" name="phone" />
+      </div>
+      <button class="btn btn-primary" type="submit" id="payBtn">Pay with card →</button>
+      <p id="checkoutError" style="color:#9b2c2c;display:none;margin:0"></p>
+    </form>
+  </div>
+</main>
+
+<script>
+  window.__CHECKOUT__ = {
+    stripePublishableKey: <%- JSON.stringify(stripePublishableKey || '') %>
+  };
+</script>
+<script src="/js/checkout.js"></script>
+<%- include('../partials/footer') %>

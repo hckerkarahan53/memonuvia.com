@@ -1,0 +1,38 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header', { activeNav: 'shop' }) %>
+
+<main class="page-shell">
+  <div class="container section-center">
+    <h1 class="section-title"><%= typeof collection !== 'undefined' && collection ? collection.name : 'Find your favorite design.' %></h1>
+    <p class="section-sub"><%= typeof collection !== 'undefined' && collection ? collection.description : 'Personalized photo slates with illusion frames — choose a design and make it yours.' %></p>
+
+    <div class="filter-bar">
+      <a class="filter-chip <%= activeCollection === 'all' ? 'active' : '' %>" href="/shop">All</a>
+      <% collections.forEach(function(c) { %>
+        <a class="filter-chip <%= activeCollection === c.id ? 'active' : '' %>" href="/collections/<%= c.slug %>"><%= c.name %></a>
+      <% }) %>
+    </div>
+
+    <div class="design-grid" style="text-align:left">
+      <% products.forEach(function(p) { %>
+        <article class="design-card">
+          <a class="design-card__media" href="/product/<%= p.slug %>">
+            <% if (p.image) { %>
+              <img src="<%= p.image %>" alt="<%= p.name %>" width="360" height="360" loading="lazy" />
+            <% } else { %>
+              <%- include('../partials/slate', { theme: p.theme, label: p.sample_text, size: 'square', compact: true }) %>
+            <% } %>
+          </a>
+          <div class="design-card__body">
+            <h3 class="design-card__name"><%= p.name %></h3>
+            <p class="design-card__sub"><%= p.subtitle %></p>
+            <div class="price">$<%= Number(p.price).toFixed(2) %></div>
+            <a class="btn btn-primary btn-sm design-card__btn" href="/personalize/<%= p.slug %>">Personalize</a>
+          </div>
+        </article>
+      <% }) %>
+    </div>
+  </div>
+</main>
+
+<%- include('../partials/footer') %>

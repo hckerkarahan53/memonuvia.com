@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title><%= title %></title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/main.css" />
+  <link rel="stylesheet" href="/css/responsive.css" />
+</head>
+<body class="admin-body">
+  <div class="admin-shell">
+    <aside class="admin-side">
+      <div class="logo" style="color:var(--cream);margin-bottom:1.5rem">
+        <span>Memo<em>Nuvia</em></span>
+      </div>
+      <a class="active" href="/admin">Orders</a>
+      <a href="/admin/products">Products</a>
+      <a href="/shop">View storefront</a>
+      <a href="/">Home</a>
+      <div style="margin-top:2rem;font-size:0.85rem;opacity:0.75">
+        <div>Supabase: <%= supabaseReady ? '✓' : '—' %></div>
+        <div>Printify: <%= printifyReady ? '✓' : '—' %></div>
+        <div>Stripe: <%= stripeReady ? '✓' : '—' %></div>
+      </div>
+    </aside>
+    <main class="admin-main">
+      <div class="admin-header-row">
+        <h1 class="admin-page-title">Orders</h1>
+        <span class="live-badge" id="liveBadge">Realtime connecting…</span>
+      </div>
+
+      <div class="admin-stats">
+        <div class="stat-card ui-lift">
+          <span>Total</span>
+          <strong id="statTotal"><%= orders.length %></strong>
+        </div>
+        <div class="stat-card ui-lift">
+          <span>Paid</span>
+          <strong id="statPaid"><%= orders.filter(o => o.payment_status === 'paid').length %></strong>
+        </div>
+        <div class="stat-card ui-lift">
+          <span>Printify</span>
+          <strong id="statPrintify"><%= orders.filter(o => o.printify_order_id).length %></strong>
+        </div>
+        <div class="stat-card ui-lift">
+          <span>Awaiting push</span>
+          <strong id="statPending"><%= orders.filter(o => o.payment_status === 'paid' && !o.printify_order_id).length %></strong>
+        </div>
+      </div>
+
+      <div class="admin-toolbar">
+        <button class="btn btn-ghost btn-sm ui-press" type="button" id="refreshOrders">Refresh</button>
+        <button class="btn btn-ghost btn-sm ui-press" type="button" id="syncPrintify">Sync Printify → DB</button>
+        <button class="btn btn-ghost btn-sm ui-press" type="button" id="retryFulfillment">Retry failed Printify jobs</button>
+        <span id="adminMsg" class="admin-msg"></span>
+      </div>
+
+      <div class="table-wrap ui-lift">
+        <table class="orders-table" id="ordersTable">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Customer</th>
+              <th>Items / Photo</th>
+              <th>Payment</th>
+              <th>Fulfillment</th>
+              <th>Printify</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="ordersBody">
+            <% if (!orders.length) { %>
+              <tr><td colspan="7">No orders yet.</td></tr>
+            <% } %>
+            <% orders.forEach(function(order) { %>
+              <tr data-order-id="<%= order.id %>">
+                <td>
+                  <strong><%= order.order_number %></strong><br />
+                  <small><%= new Date(order.created_at).toLocaleString() %></small>
+                </td>
+                <td>
+                  <%= order.customer_name || '—' %><br />
+                  <small><%= order.customer_email || '' %></small>
+                </td>
+                <td>
+                  <% (order.items || []).forEach(function(item) { %>
+                    <div class="admin-item-row">
+                      <% if (item.photo_url) { %>
+                        <img class="thumb-sm" src="<%= item.photo_url %>" alt="" />
+                      <% } %>
+                      <div>
+                        <div><%= item.product_name %></div>
+                        <small><%= item.personalization_text %></small>
+                      </div>
+                    </div>
+                  <% }) %>
+                </td>
+                <td><span class="status-pill <%= order.payment_status === 'paid' ? 'paid' : 'unpaid' %>"><%= order.payment_status %></span></td>
+                <td><span class="status-pill"><%= order.fulfillment_status || order.status %></span></td>
+                <td><%= order.printify_order_id || '—' %></td>
+                <td><a class="ui-press" href="/admin/orders/<%= order.id %>">View</a></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+  <script>
+    window.__ADMIN__ = {
+      supabaseUrl: <%- JSON.stringify(supabaseUrl || '') %>,
+      publishableKey: <%- JSON.stringify(publishableKey || '') %>
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="/js/admin.js"></script>
+</body>
+</html>

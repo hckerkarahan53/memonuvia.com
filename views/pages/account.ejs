@@ -1,0 +1,112 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container account-layout">
+    <section class="panel ui-lift">
+      <h1 class="section-title" style="font-size:2rem;margin-bottom:0.5rem">My account</h1>
+      <p class="section-sub" style="margin-bottom:1.25rem">
+        Signed in as <%= user?.email || profile?.email || '—' %>. Your profile and orders sync across devices.
+      </p>
+
+      <form class="form-grid" id="profileForm">
+        <div class="form-row">
+          <label for="full_name">Full name</label>
+          <input id="full_name" name="full_name" value="<%= profile?.full_name || user?.user_metadata?.full_name || '' %>" />
+        </div>
+        <div class="form-row">
+          <label for="phone">Phone</label>
+          <input id="phone" name="phone" value="<%= profile?.phone || '' %>" />
+        </div>
+        <div class="form-row">
+          <label for="address1">Address</label>
+          <input id="address1" value="<%= profile?.shipping_address?.address1 || '' %>" />
+        </div>
+        <div class="form-row">
+          <label for="address2">Apartment / suite</label>
+          <input id="address2" value="<%= profile?.shipping_address?.address2 || '' %>" />
+        </div>
+        <div class="account-address-row">
+          <div class="form-row">
+            <label for="city">City</label>
+            <input id="city" value="<%= profile?.shipping_address?.city || '' %>" />
+          </div>
+          <div class="form-row">
+            <label for="region">State / region</label>
+            <input id="region" value="<%= profile?.shipping_address?.region || profile?.shipping_address?.state || '' %>" />
+          </div>
+          <div class="form-row">
+            <label for="zip">ZIP</label>
+            <input id="zip" value="<%= profile?.shipping_address?.zip || profile?.shipping_address?.postal_code || '' %>" />
+          </div>
+        </div>
+        <div class="form-row">
+          <label for="country">Country</label>
+          <select id="country">
+            <% const country = profile?.shipping_address?.country || profile?.preferred_country || 'US'; %>
+            <% [['US','United States'],['GB','United Kingdom'],['DE','Germany'],['FR','France'],['TR','Türkiye']].forEach(function(opt) { %>
+              <option value="<%= opt[0] %>" <%= country === opt[0] ? 'selected' : '' %>><%= opt[1] %></option>
+            <% }) %>
+          </select>
+        </div>
+        <button class="btn btn-primary ui-press" type="submit">Save profile</button>
+        <p id="profileMsg" class="admin-msg"></p>
+      </form>
+    </section>
+
+    <section class="panel ui-lift">
+      <h2 class="section-title" style="font-size:1.6rem;margin-bottom:1rem">Order history</h2>
+      <% if (!orders.length) { %>
+        <p style="color:var(--muted);margin:0">No orders yet. <a href="/shop">Browse designs →</a></p>
+      <% } else { %>
+        <div class="account-orders">
+          <% orders.forEach(function(order) { %>
+            <article class="account-order-card">
+              <div>
+                <strong><%= order.order_number %></strong>
+                <div><small><%= new Date(order.created_at).toLocaleString() %></small></div>
+              </div>
+              <div>
+                <span class="status-pill <%= order.payment_status === 'paid' ? 'paid' : 'unpaid' %>"><%= order.payment_status %></span>
+                <span class="status-pill"><%= order.fulfillment_status || order.status %></span>
+              </div>
+              <div>$<%= Number(order.total).toFixed(2) %></div>
+            </article>
+          <% }) %>
+        </div>
+      <% } %>
+    </section>
+  </div>
+</main>
+
+<script>
+  document.getElementById('profileForm')?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const msg = document.getElementById('profileMsg');
+    msg.textContent = 'Saving…';
+    const payload = {
+      full_name: document.getElementById('full_name').value.trim(),
+      phone: document.getElementById('phone').value.trim(),
+      preferred_country: document.getElementById('country').value,
+      shipping_address: {
+        address1: document.getElementById('address1').value.trim(),
+        address2: document.getElementById('address2').value.trim(),
+        city: document.getElementById('city').value.trim(),
+        region: document.getElementById('region').value.trim(),
+        zip: document.getElementById('zip').value.trim(),
+        country: document.getElementById('country').value,
+        phone: document.getElementById('phone').value.trim(),
+        name: document.getElementById('full_name').value.trim()
+      }
+    };
+    const res = await fetch('/api/account/profile', {
+      method: 'PUT',
+      headers: { 'Content-Type': 'application/json' },
+      credentials: 'same-origin',
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json().catch(() => ({}));
+    msg.textContent = res.ok ? 'Profile saved. It will be available on any device when you sign in.' : (data.error || 'Save failed');
+  });
+</script>
+<%- include('../partials/footer') %>

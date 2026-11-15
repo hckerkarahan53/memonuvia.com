@@ -1,0 +1,80 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header', { activeNav: 'shop' }) %>
+
+<main class="page-shell">
+  <div class="container">
+    <p class="eyebrow">Personalize</p>
+    <h1 class="section-title" style="font-size:clamp(2rem,4vw,2.8rem)"><%= product.name %></h1>
+    <p class="section-sub" style="margin-bottom:1.75rem">Upload your photo, add names, and preview your keepsake.</p>
+
+    <div class="personalize-grid">
+      <div class="slate-stage personalize-preview" style="align-items:center">
+        <figure class="slate slate--<%= product.theme %> slate--square" id="liveSlate" aria-label="Live preview">
+          <div class="slate__stone">
+            <div class="slate__print">
+              <div class="slate__illusion" aria-hidden="true"></div>
+              <div class="slate__photo">
+                <img class="slate__scene" id="previewPhoto" alt="Your photo preview" style="object-fit:cover;width:100%;height:100%;display:none" />
+                <div class="slate__scene" id="previewPlaceholder" aria-hidden="true"></div>
+              </div>
+              <figcaption class="slate__caption" id="previewText"><%= product.sample_text %></figcaption>
+            </div>
+          </div>
+          <span class="slate__foot slate__foot--l" aria-hidden="true"></span>
+          <span class="slate__foot slate__foot--r" aria-hidden="true"></span>
+        </figure>
+      </div>
+
+      <div class="panel">
+        <form class="form-grid" id="personalizeForm">
+          <input type="hidden" name="product_slug" value="<%= product.slug %>" />
+
+          <div class="form-row">
+            <label for="photoInput">Your photo</label>
+            <label class="upload-zone" for="photoInput">
+              <strong>Click to upload</strong>
+              <div style="color:var(--muted);font-size:0.9rem;margin-top:0.35rem">JPG or PNG · up to 10MB</div>
+              <input id="photoInput" name="photo" type="file" accept="image/*" hidden />
+            </label>
+            <small id="uploadStatus" style="color:var(--muted)"></small>
+          </div>
+
+          <div class="form-row">
+            <label for="personalizationText"><%= product.text_placeholder || 'Names' %></label>
+            <input id="personalizationText" name="personalization_text" type="text" maxlength="60" value="<%= product.sample_text %>" required />
+          </div>
+
+          <div class="form-row">
+            <label for="sizeSelect">Size / shape</label>
+            <select id="sizeSelect" name="size">
+              <% (product.shapes || []).forEach(function(s, i) { %>
+                <option value="<%= (product.sizes && product.sizes[i]) || s %>"><%= s %></option>
+              <% }) %>
+            </select>
+          </div>
+
+          <div class="form-row">
+            <label for="qty">Quantity</label>
+            <input id="qty" name="quantity" type="number" min="1" max="10" value="1" />
+          </div>
+
+          <p class="price">$<%= Number(product.price).toFixed(2) %> <span style="color:var(--muted);font-weight:500;font-size:0.9rem">each</span></p>
+
+          <button class="btn btn-primary" type="submit" id="addToCartBtn">Continue to Checkout →</button>
+          <p id="formError" style="color:#9b2c2c;margin:0;display:none"></p>
+        </form>
+      </div>
+    </div>
+  </div>
+</main>
+
+<script>
+  window.__PERSONALIZE__ = {
+    productSlug: <%- JSON.stringify(product.slug) %>,
+    productName: <%- JSON.stringify(product.name) %>,
+    price: <%= Number(product.price) %>,
+    theme: <%- JSON.stringify(product.theme) %>
+  };
+</script>
+<script src="/js/personalize.js"></script>
+<%- include('../partials/footer') %>

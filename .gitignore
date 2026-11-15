@@ -1,0 +1,29 @@
+# Dependencies
+node_modules/
+
+# Secrets & local env
+.env
+.env.local
+.env.*.local
+!.env.example
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+
+# Uploads (user photos — keep folder)
+uploads/*
+!uploads/.gitkeep
+
+# Logs & temp
+npm-debug.log*
+yarn-error.log*
+*.log
+tmp/
+coverage/
+
+# Vercel
+.vercel

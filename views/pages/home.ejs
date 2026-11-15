@@ -1,0 +1,695 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main>
+  <!-- 02 Hero -->
+  <section class="hero hero--family" id="hero">
+    <div class="hero__glow hero__glow--tl" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--br" aria-hidden="true"></div>
+    <div class="hero__bloom hero__bloom--left" aria-hidden="true"></div>
+    <div class="hero__bloom hero__bloom--right" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-brand">
+          MemoNuvia.com
+          <span class="hero-brand__swoosh" aria-hidden="true"></span>
+        </p>
+        <h1 class="hero-title">
+          <span class="hero-title__line">Your family.</span>
+          <span class="hero-title__line">
+            Your forever
+            <span class="hero-title__keep">keepsake.<span class="hero-title__heart" aria-hidden="true"></span></span>
+          </span>
+        </h1>
+        <p class="hero-sub">Turn your favorite photo into a personalized photo slate.</p>
+        <a class="btn btn-primary btn-hero" href="/collections/family">Create Your Family Slate →</a>
+        <div class="hero-note">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true">
+            <path d="M4 8h4l1.2-2h5.6L16 8h4v11H4V8Z"/>
+            <circle cx="12" cy="13.5" r="3.2"/>
+          </svg>
+          Add your photo &amp; family name
+        </div>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-product">
+          <div class="hero-product__vase" aria-hidden="true"></div>
+          <figure class="hero-product__frame">
+            <img
+              src="/images/hero-anderson-slate.jpg"
+              alt="The Anderson Family personalized pink crystal photo slate on a cream pedestal"
+              width="720"
+              height="720"
+              decoding="async"
+              fetchpriority="high"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02b Couples Hero -->
+  <section class="hero hero--couples" id="hero-couples" aria-label="Couples collection spotlight">
+    <div class="hero__glow hero__glow--tl" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--br" aria-hidden="true"></div>
+    <div class="hero__hearts" aria-hidden="true">
+      <span class="hero__heart hero__heart--red"></span>
+      <span class="hero__heart hero__heart--purple"></span>
+      <span class="hero__heart hero__heart--gold"></span>
+    </div>
+    <div class="hero__bloom hero__bloom--left hero__bloom--pink" aria-hidden="true"></div>
+    <div class="hero__gift" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-brand hero-brand--heart">
+          MemoNuvia.com
+          <span class="hero-brand__swoosh" aria-hidden="true"></span>
+        </p>
+        <h2 class="hero-title">
+          <span class="hero-title__line">Your love, beautifully</span>
+          <span class="hero-title__line">
+            <span class="hero-title__keep">remembered.<span class="hero-title__heart" aria-hidden="true"></span></span>
+          </span>
+        </h2>
+        <p class="hero-sub">A photo, two names, a keepsake made for you.</p>
+        <a class="btn btn-primary btn-hero" href="/collections/couples">Create Your Couple Slate →</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-product">
+          <div class="hero-product__vase hero-product__vase--roses" aria-hidden="true"></div>
+          <figure class="hero-product__frame">
+            <img
+              src="/images/hero-emily-james-slate.jpg"
+              alt="Emily & James personalized crystal heart photo slate"
+              width="720"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02c Pets Hero -->
+  <section class="hero hero--pets" id="hero-pets" aria-label="Pets collection spotlight">
+    <div class="hero__glow hero__glow--tl" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--br" aria-hidden="true"></div>
+    <div class="hero__paws" aria-hidden="true">
+      <span class="hero__paw hero__paw--1"></span>
+      <span class="hero__paw hero__paw--2"></span>
+      <span class="hero__paw hero__paw--3"></span>
+    </div>
+    <div class="hero__bloom hero__bloom--left" aria-hidden="true"></div>
+    <div class="hero__bloom hero__bloom--right" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-brand hero-brand--paw">
+          <span class="hero-brand__paw-icon" aria-hidden="true"></span>
+          MemoNuvia.com
+        </p>
+        <h2 class="hero-title">
+          <span class="hero-title__line">Little paws. A big place</span>
+          <span class="hero-title__line">
+            in your
+            <span class="hero-title__keep">heart.<span class="hero-title__heart" aria-hidden="true"></span></span>
+          </span>
+        </h2>
+        <p class="hero-sub">Personalized photo slates for your favorite companion.</p>
+        <a class="btn btn-primary btn-hero" href="/collections/pets">Create Your Pet Slate →</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-product hero-product--dual">
+          <figure class="hero-product__frame">
+            <img
+              src="/images/hero-pets-luna-cooper.jpg"
+              alt="Luna and Cooper personalized pet photo slates on pedestals"
+              width="960"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02d Kids Hero -->
+  <section class="hero hero--kids" id="hero-kids" aria-label="Kids collection spotlight">
+    <div class="hero__glow hero__glow--tl" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--br" aria-hidden="true"></div>
+    <div class="hero__sparks" aria-hidden="true">
+      <span class="hero__spark hero__spark--1"></span>
+      <span class="hero__spark hero__spark--2"></span>
+      <span class="hero__spark hero__spark--3"></span>
+    </div>
+    <div class="hero__bloom hero__bloom--left" aria-hidden="true"></div>
+    <div class="hero__books" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-brand hero-brand--magic">
+          MemoNuvia.com
+          <span class="hero-brand__swoosh" aria-hidden="true"></span>
+        </p>
+        <h2 class="hero-title">
+          <span class="hero-title__line">Their smile.</span>
+          <span class="hero-title__line">
+            A little everyday
+            <span class="hero-title__keep">magic.<span class="hero-title__heart" aria-hidden="true"></span></span>
+          </span>
+        </h2>
+        <p class="hero-sub">Create a photo slate with their picture and name.</p>
+        <a class="btn btn-primary btn-hero" href="/collections/kids">Create Their Slate →</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-product hero-product--dual">
+          <figure class="hero-product__frame">
+            <img
+              src="/images/hero-kids-sophia-oliver.jpg"
+              alt="Sophia Bennett and Oliver Bennett personalized kids photo slates"
+              width="960"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 02e Portraits Hero -->
+  <section class="hero hero--portraits" id="hero-portraits" aria-label="Portraits collection spotlight">
+    <div class="hero__glow hero__glow--tl" aria-hidden="true"></div>
+    <div class="hero__glow hero__glow--br" aria-hidden="true"></div>
+    <div class="hero__bloom hero__bloom--left hero__bloom--pink" aria-hidden="true"></div>
+    <div class="hero__bloom hero__bloom--right" aria-hidden="true"></div>
+
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="hero-brand hero-brand--leaf">
+          <span class="hero-brand__leaf-icon" aria-hidden="true"></span>
+          MemoNuvia.com
+          <span class="hero-brand__swoosh" aria-hidden="true"></span>
+        </p>
+        <h2 class="hero-title">
+          <span class="hero-title__line">A keepsake as</span>
+          <span class="hero-title__line">
+            <span class="hero-title__keep">unique as you.<span class="hero-title__heart" aria-hidden="true"></span></span>
+          </span>
+        </h2>
+        <p class="hero-sub">Your photo, your name, your favorite design.</p>
+        <a class="btn btn-primary btn-hero" href="/shop?collection=portraits">Create Your Photo Slate →</a>
+      </div>
+
+      <div class="hero-visual">
+        <div class="hero-product hero-product--dual">
+          <div class="hero-product__vase hero-product__vase--roses" aria-hidden="true"></div>
+          <figure class="hero-product__frame">
+            <img
+              src="/images/hero-portraits-charlotte-james.jpg"
+              alt="Charlotte Wilson and James Anderson personalized portrait photo slates"
+              width="960"
+              height="720"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 03 Transformation -->
+  <section class="xform" id="transformation">
+    <div class="xform__glow xform__glow--tl" aria-hidden="true"></div>
+    <div class="xform__glow xform__glow--tr" aria-hidden="true"></div>
+    <div class="xform__glow xform__glow--br" aria-hidden="true"></div>
+    <div class="xform__sparks" aria-hidden="true">
+      <span class="xform__spark xform__spark--1"></span>
+      <span class="xform__spark xform__spark--2"></span>
+      <span class="xform__spark xform__spark--3"></span>
+    </div>
+
+    <div class="container section-center">
+      <p class="xform-brand">
+        <span class="xform-brand__heart" aria-hidden="true"></span>
+        MemoNuvia.com
+        <span class="xform-brand__line" aria-hidden="true"></span>
+      </p>
+      <h2 class="xform-title">
+        From a photo to a
+        <span class="xform-title__keep">keepsake.<span class="xform-title__swoosh" aria-hidden="true"></span></span>
+      </h2>
+      <p class="xform-sub">One favorite moment. A beautiful transformation.</p>
+
+      <div class="xform-flow">
+        <article class="xform-step">
+          <div class="xform-step__label">
+            <span class="xform-step__num">01</span>
+            <span class="xform-step__tag">Your Photo</span>
+          </div>
+          <div class="xform-step__media">
+            <img src="/images/transform-01-photo.jpg" alt="Original Anderson family photo" width="480" height="480" loading="lazy" />
+          </div>
+        </article>
+
+        <span class="xform-arrow" aria-hidden="true">
+          <svg viewBox="0 0 48 24" fill="none"><path d="M2 12h38M30 4l12 8-12 8" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+
+        <article class="xform-step">
+          <div class="xform-step__label">
+            <span class="xform-step__num">02</span>
+            <span class="xform-step__tag">Your Design</span>
+          </div>
+          <div class="xform-step__media">
+            <img src="/images/transform-02-design.jpg" alt="Anderson family photo in pink crystal illusion design" width="480" height="480" loading="lazy" />
+          </div>
+        </article>
+
+        <span class="xform-arrow" aria-hidden="true">
+          <svg viewBox="0 0 48 24" fill="none"><path d="M2 12h38M30 4l12 8-12 8" stroke="#2dd4bf" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+
+        <article class="xform-step">
+          <div class="xform-step__label">
+            <span class="xform-step__num">03</span>
+            <span class="xform-step__tag">Your Photo Slate</span>
+          </div>
+          <div class="xform-step__media">
+            <img src="/images/transform-03-slate.jpg" alt="Finished Anderson Family natural photo slate on stands" width="480" height="480" loading="lazy" />
+          </div>
+        </article>
+      </div>
+
+      <div class="xform-cta">
+        <span class="xform-cta__dash" aria-hidden="true"></span>
+        <a class="btn btn-primary btn-hero" href="/shop">Create Your Photo Slate →</a>
+        <span class="xform-cta__dash" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 Collections -->
+  <section class="love-collections" id="collections">
+    <div class="love-collections__glow love-collections__glow--tl" aria-hidden="true"></div>
+    <div class="love-collections__glow love-collections__glow--br" aria-hidden="true"></div>
+    <div class="love-collections__bloom love-collections__bloom--tr" aria-hidden="true"></div>
+    <div class="love-collections__bloom love-collections__bloom--bl" aria-hidden="true"></div>
+
+    <div class="container section-center">
+      <div class="love-collections__sparks" aria-hidden="true">
+        <span></span><span></span><span></span>
+      </div>
+      <h2 class="love-collections__title">
+        Made for the ones you
+        <span class="love-collections__keep">love.<span class="love-collections__swoosh" aria-hidden="true"></span></span>
+      </h2>
+
+      <div class="love-grid">
+        <% collections.forEach(function(c) { %>
+          <a
+            class="love-card"
+            href="<%= c.href || ('/collections/' + c.slug) %>"
+            style="--card-bg: <%= c.accent %>"
+          >
+            <div class="love-card__media">
+              <img src="<%= c.image %>" alt="<%= c.name %> collection — <%= c.sample_text %>" width="420" height="420" loading="lazy" />
+            </div>
+            <h3 class="love-card__name"><%= c.name %></h3>
+            <span class="btn btn-primary btn-sm love-card__btn">Explore →</span>
+          </a>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- 05 Design grid -->
+  <section class="design-shop" id="designs">
+    <div class="design-shop__glow design-shop__glow--tl" aria-hidden="true"></div>
+    <div class="design-shop__glow design-shop__glow--br" aria-hidden="true"></div>
+
+    <div class="container section-center">
+      <div class="design-shop__heading">
+        <span class="design-shop__leaf design-shop__leaf--l" aria-hidden="true"></span>
+        <h2 class="design-shop__title">
+          Find your
+          <span class="design-shop__keep">favorite<span class="design-shop__swoosh" aria-hidden="true"></span></span>
+          design.
+        </h2>
+        <span class="design-shop__leaf design-shop__leaf--r" aria-hidden="true"></span>
+      </div>
+
+      <div class="design-filters" role="tablist" aria-label="Filter designs">
+        <button class="design-filter active" data-filter="all" type="button">All</button>
+        <button class="design-filter" data-filter="family" type="button">Family</button>
+        <button class="design-filter" data-filter="couples" type="button">Couples</button>
+        <button class="design-filter" data-filter="pets" type="button">Pets</button>
+        <button class="design-filter" data-filter="kids" type="button">Kids</button>
+        <button class="design-filter" data-filter="portraits" type="button">Portraits</button>
+      </div>
+
+      <div class="design-grid" id="homeProductGrid">
+        <% products.forEach(function(p) { %>
+          <article class="design-card" data-collection="<%= p.collection %>">
+            <div class="design-card__media">
+              <img src="<%= p.image %>" alt="<%= p.name %> — <%= p.sample_text %>" width="360" height="360" loading="lazy" />
+            </div>
+            <div class="design-card__body">
+              <h3 class="design-card__name"><%= p.name %></h3>
+              <p class="design-card__sub"><%= p.subtitle %></p>
+              <a class="btn btn-primary btn-sm design-card__btn" href="/personalize/<%= p.slug %>">Personalize</a>
+            </div>
+          </article>
+        <% }) %>
+      </div>
+    </div>
+  </section>
+
+  <!-- 06 How it works -->
+  <section class="how-flow" id="how-it-works">
+    <div class="how-flow__glow how-flow__glow--tl" aria-hidden="true"></div>
+    <div class="how-flow__glow how-flow__glow--tr" aria-hidden="true"></div>
+    <div class="how-flow__glow how-flow__glow--bl" aria-hidden="true"></div>
+    <div class="how-flow__glow how-flow__glow--br" aria-hidden="true"></div>
+    <div class="how-flow__flowers" aria-hidden="true"></div>
+    <div class="how-flow__gift" aria-hidden="true"></div>
+
+    <div class="container section-center">
+      <p class="how-flow__brand">
+        MemoNuvia.com
+        <span class="how-flow__brand-heart" aria-hidden="true"></span>
+        <span class="how-flow__brand-line" aria-hidden="true"></span>
+      </p>
+
+      <h2 class="how-flow__title">
+        <span class="how-flow__spark how-flow__spark--l" aria-hidden="true"></span>
+        Your memories, made
+        <span class="how-flow__keep">personal.<span class="how-flow__swoosh" aria-hidden="true"></span></span>
+        <span class="how-flow__heart" aria-hidden="true"></span>
+        <span class="how-flow__spark how-flow__spark--r" aria-hidden="true"></span>
+      </h2>
+
+      <div class="how-flow__grid">
+        <article class="how-step-card">
+          <span class="how-step-card__badge">1</span>
+          <h3 class="how-step-card__title">Choose your design</h3>
+          <div class="how-step-card__media">
+            <img src="/images/how-step-1-design.jpg" alt="Choose a photo slate design" width="420" height="420" loading="lazy" />
+          </div>
+        </article>
+
+        <span class="how-flow__arrows" aria-hidden="true">»</span>
+
+        <article class="how-step-card">
+          <span class="how-step-card__badge">2</span>
+          <h3 class="how-step-card__title">Upload your photo</h3>
+          <div class="how-step-card__media">
+            <img src="/images/how-step-2-upload.jpg" alt="Upload your photo" width="420" height="420" loading="lazy" />
+          </div>
+        </article>
+
+        <span class="how-flow__arrows" aria-hidden="true">»</span>
+
+        <article class="how-step-card">
+          <span class="how-step-card__badge">3</span>
+          <h3 class="how-step-card__title">Add your names</h3>
+          <div class="how-step-card__media">
+            <img src="/images/how-step-3-names.jpg" alt="Add personalization names" width="420" height="315" loading="lazy" />
+          </div>
+        </article>
+
+        <span class="how-flow__arrows" aria-hidden="true">»</span>
+
+        <article class="how-step-card">
+          <span class="how-step-card__badge">4</span>
+          <h3 class="how-step-card__title">Place your order</h3>
+          <div class="how-step-card__media">
+            <img src="/images/how-step-4-order.jpg" alt="Place your order checkout preview" width="420" height="315" loading="lazy" />
+          </div>
+        </article>
+      </div>
+
+      <div class="how-flow__cta">
+        <span class="how-flow__spark how-flow__spark--l" aria-hidden="true"></span>
+        <div class="how-flow__cta-wrap">
+          <a class="btn btn-primary btn-hero" href="/shop">Start Personalizing →</a>
+          <span class="how-flow__cta-line" aria-hidden="true"></span>
+        </div>
+        <span class="how-flow__spark how-flow__spark--r" aria-hidden="true"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 07 Real product details -->
+  <section class="slate-facts" id="product-details">
+    <div class="slate-facts__glow slate-facts__glow--tl" aria-hidden="true"></div>
+    <div class="slate-facts__glow slate-facts__glow--br" aria-hidden="true"></div>
+    <div class="slate-facts__lavender" aria-hidden="true"></div>
+
+    <div class="container slate-facts__layout">
+      <div class="slate-facts__media">
+        <img
+          src="/images/product-hero-slate.jpg"
+          alt="Emily &amp; James personalized photo slate on display stands"
+          width="720"
+          height="720"
+          loading="lazy"
+        />
+      </div>
+
+      <div class="slate-facts__copy">
+        <h2 class="slate-facts__title">
+          Beautiful memories.<br />
+          <span class="slate-facts__keep">
+            Real natural slate.
+            <span class="slate-facts__swoosh" aria-hidden="true"></span>
+            <span class="slate-facts__spark" aria-hidden="true"></span>
+          </span>
+        </h2>
+
+        <div class="slate-facts__features">
+          <figure class="slate-fact-card">
+            <div class="slate-fact-card__media">
+              <img src="/images/feature-stone-edges.jpg" alt="Natural stone edge close-up" width="280" height="280" loading="lazy" />
+            </div>
+            <figcaption>Natural stone edges</figcaption>
+          </figure>
+
+          <figure class="slate-fact-card slate-fact-card--accent">
+            <div class="slate-fact-card__media">
+              <img src="/images/feature-printed-design.jpg" alt="Printed crystal photo design close-up" width="280" height="280" loading="lazy" />
+            </div>
+            <figcaption>Printed photo design</figcaption>
+          </figure>
+
+          <figure class="slate-fact-card">
+            <div class="slate-fact-card__media">
+              <img src="/images/feature-display-stands.jpg" alt="Separate black display stands" width="280" height="280" loading="lazy" />
+            </div>
+            <figcaption>Separate display stands</figcaption>
+          </figure>
+        </div>
+
+        <p class="slate-facts__note">
+          <span class="slate-facts__note-arrow" aria-hidden="true">›</span>
+          The 3D effect is part of the printed design.
+          <span class="slate-facts__note-arrow slate-facts__note-arrow--flip" aria-hidden="true">›</span>
+        </p>
+
+        <div class="slate-facts__cta">
+          <span class="slate-facts__cta-spark" aria-hidden="true"></span>
+          <div class="slate-facts__cta-wrap">
+            <a class="btn btn-primary btn-hero" href="/shop">Shop on MemoNuvia.com →</a>
+            <span class="slate-facts__cta-line" aria-hidden="true"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 08 Gift ideas -->
+  <section class="gift-occasions" id="gifts">
+    <div class="gift-occasions__glow gift-occasions__glow--tl" aria-hidden="true"></div>
+    <div class="gift-occasions__glow gift-occasions__glow--tr" aria-hidden="true"></div>
+    <div class="gift-occasions__glow gift-occasions__glow--bl" aria-hidden="true"></div>
+    <div class="gift-occasions__glow gift-occasions__glow--br" aria-hidden="true"></div>
+    <div class="gift-occasions__bloom gift-occasions__bloom--l" aria-hidden="true"></div>
+    <div class="gift-occasions__bloom gift-occasions__bloom--r" aria-hidden="true"></div>
+
+    <div class="container section-center">
+      <div class="gift-occasions__brand">
+        <span class="gift-occasions__wave" aria-hidden="true"></span>
+        <p class="gift-occasions__logo">MemoNuvia.com</p>
+        <span class="gift-occasions__wave" aria-hidden="true"></span>
+      </div>
+
+      <h2 class="gift-occasions__title">
+        <span class="gift-occasions__burst gift-occasions__burst--l" aria-hidden="true"></span>
+        A personal gift for every
+        <span class="gift-occasions__keep">chapter.<span class="gift-occasions__swoosh" aria-hidden="true"></span></span>
+        <span class="gift-occasions__burst gift-occasions__burst--r" aria-hidden="true"></span>
+      </h2>
+
+      <div class="gift-occasions__grid">
+        <% giftOccasions.forEach(function(g) { %>
+          <a class="gift-occasion-card" href="/collections/<%= g.collection %>" style="--gift-bg: <%= g.accent %>">
+            <div class="gift-occasion-card__media">
+              <img src="<%= g.image %>" alt="<%= g.name %> gift idea — <%= g.sample_text %>" width="480" height="640" loading="lazy" />
+            </div>
+            <span class="gift-occasion-card__label"><%= g.name %></span>
+          </a>
+        <% }) %>
+      </div>
+
+      <div class="gift-occasions__cta">
+        <a class="btn btn-primary btn-hero" href="/shop">Shop Gift Occasions →</a>
+        <p class="gift-occasions__sub">Find a meaningful gift</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 09 FAQ -->
+  <section class="faq-band" id="faq">
+    <div class="faq-band__glow faq-band__glow--tl" aria-hidden="true"></div>
+    <div class="faq-band__glow faq-band__glow--tr" aria-hidden="true"></div>
+    <div class="faq-band__glow faq-band__glow--br" aria-hidden="true"></div>
+
+    <div class="container">
+      <div class="faq-band__header section-center">
+        <div class="faq-band__brand">
+          <span class="faq-band__rule" aria-hidden="true"></span>
+          <p class="faq-band__logo">MemoNuvia.com</p>
+          <span class="faq-band__rule" aria-hidden="true"></span>
+          <span class="faq-band__petal" aria-hidden="true"></span>
+        </div>
+
+        <h2 class="faq-band__title">
+          <span class="faq-band__spark" aria-hidden="true"></span>
+          A few things you might be
+          <span class="faq-band__keep">wondering.<span class="faq-band__swoosh" aria-hidden="true"></span></span>
+        </h2>
+      </div>
+
+      <div class="faq-band__layout">
+        <div class="faq-band__media">
+          <img
+            src="/images/faq-luna-slate.jpg"
+            alt="Luna personalized photo slate on display stands"
+            width="560"
+            height="700"
+            loading="lazy"
+          />
+        </div>
+
+        <div class="faq-band__list" id="faqAccordion">
+          <% faqs.forEach(function(f) { %>
+            <details class="faq-pill">
+              <summary>
+                <span class="faq-pill__q"><%= f.q %></span>
+                <span class="faq-pill__plus" aria-hidden="true">+</span>
+              </summary>
+              <div class="faq-pill__body">
+                <p><%= f.a %></p>
+              </div>
+            </details>
+          <% }) %>
+        </div>
+      </div>
+
+      <div class="faq-band__footer" aria-hidden="true">
+        <span class="faq-band__footer-line"></span>
+        <span class="faq-band__footer-mark">
+          <span class="faq-band__petal"></span>
+          <span class="faq-band__footer-dash"></span>
+        </span>
+        <span class="faq-band__footer-line"></span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 Sample designs -->
+  <section class="section wave-bg" id="samples">
+    <div class="container section-center">
+      <p class="eyebrow">MemoNuvia.com</p>
+      <h2 class="section-title">Picture it in your <span class="underline-accent">home.</span></h2>
+      <p class="section-sub">Explore our sample designs.</p>
+      <div class="sample-grid">
+        <figure class="sample-card">
+          <div class="slate-stage" style="min-height:240px;padding:1.25rem 0.5rem">
+            <%- include('../partials/slate', { theme: 'family', label: 'The Anderson Family', size: 'rect', compact: true }) %>
+          </div>
+          <figcaption>The Anderson Family</figcaption>
+        </figure>
+        <figure class="sample-card">
+          <div class="slate-stage" style="min-height:240px;padding:1.25rem 0.5rem">
+            <%- include('../partials/slate', { theme: 'couples', label: 'Emily & James', size: 'square', compact: true }) %>
+          </div>
+          <figcaption>Emily &amp; James</figcaption>
+        </figure>
+        <figure class="sample-card">
+          <div class="slate-stage" style="min-height:240px;padding:1.25rem 0.5rem">
+            <%- include('../partials/slate', { theme: 'pets', label: 'Luna', size: 'square', compact: true }) %>
+          </div>
+          <figcaption>Luna</figcaption>
+        </figure>
+        <figure class="sample-card">
+          <div class="slate-stage" style="min-height:240px;padding:1.25rem 0.5rem">
+            <%- include('../partials/slate', { theme: 'emerald', label: 'Cooper', size: 'square', compact: true }) %>
+          </div>
+          <figcaption>Cooper</figcaption>
+        </figure>
+      </div>
+      <div style="margin-top:2rem">
+        <a class="btn btn-primary" href="/shop">Explore Sample Designs →</a>
+        <p class="note-soft" style="margin-top:0.85rem">Sample designs shown for inspiration.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 11 Final CTA -->
+  <section class="close-cta" id="create">
+    <div class="close-cta__glow close-cta__glow--tl" aria-hidden="true"></div>
+    <div class="close-cta__glow close-cta__glow--bl" aria-hidden="true"></div>
+    <div class="close-cta__bloom" aria-hidden="true"></div>
+
+    <div class="container close-cta__layout">
+      <div class="close-cta__copy">
+        <h2 class="close-cta__title">
+          Make a favorite
+          <span class="close-cta__keep">moment<span class="close-cta__swoosh" aria-hidden="true"></span></span>
+          last.
+        </h2>
+        <p class="close-cta__sub">Create a personalized photo slate for someone you love.</p>
+        <div class="close-cta__action">
+          <a class="btn btn-primary btn-hero" href="/shop">Create Your Slate →</a>
+          <span class="close-cta__spark" aria-hidden="true"></span>
+        </div>
+      </div>
+
+      <div class="close-cta__media">
+        <img
+          src="/images/cta-final-slates.jpg"
+          alt="The Anderson Family and Emily &amp; James photo slates on display"
+          width="720"
+          height="540"
+          loading="lazy"
+        />
+      </div>
+    </div>
+  </section>
+</main>
+
+<%- include('../partials/footer') %>

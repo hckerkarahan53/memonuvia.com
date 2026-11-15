@@ -1,0 +1,23 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container" style="max-width:560px">
+    <h1 class="section-title" style="font-size:2.4rem">Track Your Order</h1>
+    <p class="section-sub" style="margin-bottom:1.25rem">Enter your order number and email.</p>
+    <form class="panel form-grid" id="trackForm">
+      <div class="form-row">
+        <label for="order">Order number</label>
+        <input id="order" name="order" placeholder="MN-…" value="<%= query || '' %>" required />
+      </div>
+      <div class="form-row">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+      </div>
+      <button class="btn btn-primary" type="submit">Track order</button>
+    </form>
+    <div class="panel" id="trackResult" style="margin-top:1rem;display:none"></div>
+  </div>
+</main>
+<script src="/js/track.js"></script>
+<%- include('../partials/footer') %>

@@ -1,0 +1,44 @@
+<%- include('../partials/head') %>
+<%- include('../partials/header') %>
+
+<main class="page-shell">
+  <div class="container">
+    <div class="panel auth-box">
+      <h1 class="section-title" style="font-size:2rem;text-align:center">Welcome back</h1>
+      <p class="section-sub" style="text-align:center;margin:0 auto 1.25rem">Sign in with Google or email. Your session stays until you sign out.</p>
+
+      <% if (!supabaseUrl || !supabaseAnonKey) { %>
+        <p style="background:#fde8e6;padding:0.85rem;border-radius:12px;color:#9b2c2c">
+          Supabase is not configured yet. Add <code>SUPABASE_URL</code> and <code>SUPABASE_ANON_KEY</code> to <code>.env</code>.
+        </p>
+      <% } else { %>
+        <button class="btn btn-ghost" type="button" id="googleBtn" style="width:100%">Continue with Google</button>
+        <div class="auth-divider">or email</div>
+        <form class="form-grid" id="emailAuthForm">
+          <div class="form-row">
+            <label for="email">Email</label>
+            <input id="email" type="email" required autocomplete="email" />
+          </div>
+          <div class="form-row">
+            <label for="password">Password</label>
+            <input id="password" type="password" required minlength="6" autocomplete="current-password" />
+          </div>
+          <button class="btn btn-primary" type="submit">Sign in</button>
+          <button class="btn btn-ghost" type="button" id="signUpBtn">Create account</button>
+        </form>
+        <p id="authMessage" style="color:var(--muted);font-size:0.9rem;margin:0.75rem 0 0"></p>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+  window.__AUTH__ = {
+    supabaseUrl: <%- JSON.stringify(supabaseUrl || '') %>,
+    supabaseAnonKey: <%- JSON.stringify(supabaseAnonKey || '') %>,
+    next: <%- JSON.stringify(next || '/') %>
+  };
+</script>
+<script src="/js/auth.js"></script>
+<%- include('../partials/footer') %>

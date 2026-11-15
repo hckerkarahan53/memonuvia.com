@@ -1,0 +1,635 @@
+/**
+ * MemoNuvia responsive system
+ * Breakpoints: sm <640 | md 641–768 | tablet 769–1024 | lg 1025–1279 | xl 1280+
+ * No Tailwind dependency — mirrors the requested hierarchy in native CSS.
+ */
+
+/* ---------- Global anti-overflow & base ---------- */
+html {
+  overflow-x: hidden;
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+img,
+video,
+svg,
+canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+main,
+.section,
+.hero,
+.how-flow,
+.slate-facts,
+.gift-occasions,
+.faq-band,
+.close-cta,
+.design-shop,
+.love-collections,
+.xform,
+.site-footer {
+  max-width: 100%;
+  overflow-x: clip;
+}
+
+.container {
+  width: min(100% - 2rem, 1180px);
+  margin-inline: auto;
+}
+
+@media (min-width: 1280px) {
+  .container {
+    width: min(100% - 3rem, 1280px);
+  }
+}
+
+@media (min-width: 1536px) {
+  .container {
+    width: min(100% - 4rem, 1400px);
+  }
+}
+
+/* ---------- Touch targets (min 44×44) ---------- */
+.btn,
+.icon-btn,
+.menu-toggle,
+.design-filter,
+.filter-chip,
+.love-card__btn,
+.design-card__btn,
+.faq-pill summary,
+.faq-pill__plus,
+.upload-zone {
+  min-height: 44px;
+}
+
+.icon-btn,
+.menu-toggle {
+  min-width: 44px;
+  min-height: 44px;
+}
+
+.btn:active,
+.ui-press:active,
+.design-card__btn:active,
+.love-card__btn:active {
+  transform: scale(0.95);
+}
+
+/* ---------- Aspect-safe media ---------- */
+.media-frame,
+.design-card__media,
+.gift-occasion-card__media,
+.slate-fact-card__media,
+.how-step-card__media,
+.faq-band__media,
+.close-cta__media,
+.slate-facts__media,
+.product-card__media,
+.hero-product__shot,
+.admin-pers-media {
+  position: relative;
+  overflow: hidden;
+}
+
+.media-frame--square,
+.design-card__media,
+.slate-fact-card__media,
+.how-step-card__media,
+.product-card__media {
+  aspect-ratio: 1 / 1;
+}
+
+.gift-occasion-card__media {
+  aspect-ratio: 3 / 4;
+}
+
+.media-frame img,
+.design-card__media img,
+.gift-occasion-card__media img,
+.slate-fact-card__media img,
+.how-step-card__media img,
+.faq-band__media img,
+.close-cta__media img,
+.slate-facts__media img,
+.hero-product__shot img,
+.product-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  display: block;
+}
+
+/* Lifestyle cards that need fill (gift occasions) keep cover */
+.gift-occasion-card__media img,
+.slate-fact-card__media img {
+  object-fit: cover;
+}
+
+/* Live personalize preview scales with viewport */
+.slate-stage {
+  width: 100%;
+  max-width: 100%;
+  display: grid;
+  place-items: center;
+  min-height: unset !important;
+  padding: clamp(1rem, 3vw, 2rem) 0.5rem;
+}
+
+.slate-stage .slate {
+  --slate-w: min(100%, 320px);
+  width: var(--slate-w);
+}
+
+.personalize-grid .slate-stage .slate {
+  --slate-w: min(92vw, 360px);
+}
+
+/* ---------- Typography fluid scale ---------- */
+.section-title,
+.hero-title,
+.how-flow__title,
+.gift-occasions__title,
+.faq-band__title,
+.close-cta__title,
+.slate-facts__title,
+.admin-page-title {
+  font-size: clamp(1.75rem, 1.2rem + 2.4vw, 3.1rem);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.section-sub,
+.hero-sub,
+.close-cta__sub {
+  font-size: clamp(0.95rem, 0.9rem + 0.35vw, 1.1rem);
+  max-width: 42ch;
+}
+
+.design-card__name,
+.gift-occasion-card__label,
+.how-step-card__title {
+  font-size: clamp(1.05rem, 0.95rem + 0.4vw, 1.35rem);
+}
+
+/* ---------- Section breathing room ---------- */
+.section,
+.how-flow,
+.slate-facts,
+.gift-occasions,
+.faq-band,
+.close-cta,
+.design-shop,
+.love-collections,
+.xform {
+  padding-block: clamp(2.75rem, 5vw, 5.5rem);
+}
+
+/* ---------- Header: relative shell for dropdown ---------- */
+.site-header .header-shell {
+  position: relative;
+}
+
+.header-tools {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+/* =========================================================
+   TABLET — 641px to 1024px (critical iPad band)
+   ========================================================= */
+@media (min-width: 641px) and (max-width: 1024px) {
+  .container {
+    width: min(100% - 2rem, 960px);
+  }
+
+  .header-bar {
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .nav {
+    display: none;
+  }
+
+  .menu-toggle {
+    display: grid;
+  }
+
+  .nav.open {
+    display: flex;
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    left: 0;
+    right: 0;
+    z-index: 60;
+    background: #fff;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.75rem;
+    border: 1px solid rgba(29, 77, 79, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 16px 40px rgba(29, 77, 79, 0.1);
+  }
+
+  .nav.open a {
+    min-height: 44px;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 1rem;
+  }
+
+  /* Product / collection grids: 2–3 columns */
+  .product-grid,
+  .sample-grid,
+  .collection-grid,
+  .steps-3 {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+  }
+
+  .love-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gift-occasions__grid,
+  .gift-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .how-flow__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .how-flow__arrows {
+    display: none;
+  }
+
+  .design-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .design-card {
+    grid-template-columns: minmax(140px, 0.9fr) minmax(160px, 1.1fr);
+    gap: 1rem;
+  }
+
+  .slate-facts__features {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .slate-facts__layout,
+  .faq-band__layout,
+  .close-cta__layout,
+  .personalize-grid,
+  .hero-grid,
+  .split {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .admin-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .admin-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-side {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+    padding: 1rem;
+  }
+
+  .admin-side a {
+    display: inline-flex;
+    margin: 0;
+  }
+
+  /* Horizontal category chip strip on tablet */
+  .design-filters,
+  .filter-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.5rem;
+    padding-bottom: 0.35rem;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+  }
+
+  .design-filter,
+  .filter-chip {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+/* Mid tablet landscape: 3-col product grids */
+@media (min-width: 900px) and (max-width: 1024px) {
+  .product-grid,
+  .sample-grid,
+  .love-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .gift-occasions__grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .design-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =========================================================
+   MOBILE — < 640px
+   ========================================================= */
+@media (max-width: 640px) {
+  .container {
+    width: min(100% - 1.25rem, 100%);
+  }
+
+  .announcement {
+    padding: 0.55rem 0.75rem;
+    gap: 0.4rem;
+  }
+
+  .announcement__text {
+    font-size: 0.88rem;
+    text-align: center;
+  }
+
+  .logo-word {
+    font-size: 1.45rem;
+  }
+
+  .logo-mark {
+    width: 34px;
+    height: 38px;
+  }
+
+  .logo-mark__stone {
+    width: 32px;
+    height: 36px;
+  }
+
+  .locale-wrap {
+    display: none;
+  }
+
+  .header-shell {
+    padding-top: 0.85rem;
+    padding-bottom: 0.7rem;
+    gap: 0.55rem;
+  }
+
+  /* Single column everything */
+  .hero-grid,
+  .split,
+  .personalize-grid,
+  .faq-layout,
+  .faq-band__layout,
+  .slate-facts__layout,
+  .close-cta__layout,
+  .account-layout,
+  .admin-detail-grid,
+  .admin-shell,
+  .xform-flow,
+  .how-flow__grid,
+  .design-grid,
+  .product-grid,
+  .sample-grid,
+  .collection-grid,
+  .gift-grid,
+  .gift-occasions__grid,
+  .steps-3,
+  .how-grid,
+  .footer-grid,
+  .admin-stats,
+  .form-row + .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  .how-flow__arrows {
+    display: none;
+  }
+
+  .design-card {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .design-card__body {
+    align-items: center;
+  }
+
+  .design-card__media {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+
+  .slate-facts__features {
+    grid-template-columns: 1fr;
+    max-width: 260px;
+    margin-inline: auto;
+  }
+
+  .hero-copy,
+  .slate-facts__copy,
+  .close-cta__copy {
+    text-align: center;
+  }
+
+  .hero-sub,
+  .close-cta__sub,
+  .section-sub {
+    margin-inline: auto;
+  }
+
+  .hero-cta,
+  .slate-facts__cta,
+  .close-cta__action,
+  .how-flow__cta,
+  .gift-occasions__cta {
+    justify-content: center;
+  }
+
+  .hero-product__vase,
+  .design-shop__leaf,
+  .love-collections__bloom,
+  .how-flow__flowers,
+  .how-flow__gift {
+    display: none;
+  }
+
+  /* Swipeable love cards */
+  .love-grid {
+    display: flex;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    gap: 0.85rem;
+    padding-bottom: 0.65rem;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-x: contain;
+  }
+
+  .love-card {
+    flex: 0 0 min(82vw, 300px);
+    scroll-snap-align: start;
+  }
+
+  /* Filter chips horizontal scroll */
+  .design-filters,
+  .filter-row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    gap: 0.45rem;
+    padding: 0.15rem 0 0.5rem;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .design-filter,
+  .filter-chip {
+    flex: 0 0 auto;
+    padding: 0.55rem 1rem;
+    font-size: 0.9rem;
+  }
+
+  .faq-pill {
+    border-radius: 22px;
+  }
+
+  .faq-pill summary {
+    min-height: 48px;
+    padding: 0.85rem 0.75rem 0.85rem 1rem;
+    font-size: 0.92rem;
+    gap: 0.65rem;
+  }
+
+  .panel {
+    padding: 1.15rem;
+  }
+
+  .page-shell {
+    padding: 1.75rem 0 3rem;
+  }
+
+  .account-address-row {
+    grid-template-columns: 1fr;
+  }
+
+  .checkout .container,
+  .page-shell .container {
+    max-width: 100%;
+  }
+
+  /* Prevent fixed-width form grids from overflowing */
+  .form-grid [style*="grid-template-columns"] {
+    grid-template-columns: 1fr !important;
+  }
+
+  .footer-grid {
+    text-align: center;
+  }
+
+  .footer-brand__tag {
+    margin-inline: auto;
+  }
+}
+
+/* Very small phones */
+@media (max-width: 380px) {
+  .section-title,
+  .hero-title,
+  .how-flow__title,
+  .gift-occasions__title,
+  .faq-band__title,
+  .close-cta__title {
+    font-size: 1.55rem;
+  }
+
+  .btn-hero {
+    width: 100%;
+    padding-inline: 1rem;
+  }
+
+  .design-card__btn,
+  .love-card__btn {
+    width: 100%;
+  }
+}
+
+/* Desktop comfort: never stretch hero content too wide */
+@media (min-width: 1280px) {
+  .hero-grid,
+  .slate-facts__layout,
+  .faq-band__layout,
+  .close-cta__layout,
+  .personalize-grid {
+    gap: clamp(2rem, 3vw, 3.5rem);
+  }
+
+  .design-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1440px) {
+  .product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+.checkout-address-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+@media (max-width: 640px) {
+  .checkout-address-row {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 768px) {
+  .checkout-address-row {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .btn:active,
+  .ui-press:active,
+  .ui-lift:hover,
+  .gift-occasion-card:hover,
+  .design-card:hover {
+    transform: none;
+  }
+}

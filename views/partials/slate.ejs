@@ -1,0 +1,24 @@
+<%#
+  CSS-built photo slate mockup (no raster banners).
+  locals: theme, label, size ('square'|'rect'), compact (bool)
+  themes: family | couples | pets | kids | portrait | sapphire | emerald | space
+%>
+<%
+  const themeName = typeof theme !== 'undefined' ? theme : 'family';
+  const slateLabel = typeof label !== 'undefined' ? label : 'Your Name';
+  const slateSize = typeof size !== 'undefined' ? size : 'square';
+  const isCompact = typeof compact !== 'undefined' && compact;
+%>
+<figure class="slate slate--<%= themeName %> slate--<%= slateSize %><%= isCompact ? ' slate--compact' : '' %>" aria-label="<%= slateLabel %> photo slate">
+  <div class="slate__stone">
+    <div class="slate__print">
+      <div class="slate__illusion" aria-hidden="true"></div>
+      <div class="slate__photo">
+        <div class="slate__scene" aria-hidden="true"></div>
+      </div>
+      <figcaption class="slate__caption"><%= slateLabel %></figcaption>
+    </div>
+  </div>
+  <span class="slate__foot slate__foot--l" aria-hidden="true"></span>
+  <span class="slate__foot slate__foot--r" aria-hidden="true"></span>
+</figure>
