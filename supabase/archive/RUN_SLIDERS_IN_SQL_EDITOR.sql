@@ -1,0 +1,3 @@
+-- Manual SQL Editor fallback — prefer: supabase link && supabase db push
+-- Canonical migration: 20261118140000_sliders.sql
+-- After a successful db push this file is not required.

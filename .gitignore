@@ -1,32 +1,41 @@
-# Dependencies
-node_modules/
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-# Secrets & local env
-.env
-.env.local
-.env.*.local
-!.env.example
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-# OS / editor
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+
+# misc
 .DS_Store
-Thumbs.db
-.idea/
-.vscode/
-*.swp
+*.pem
 
-# Uploads (user photos — keep folder)
-uploads/*
-!uploads/.gitkeep
-
-# Logs & temp
+# debug
 npm-debug.log*
+yarn-debug.log*
 yarn-error.log*
-*.log
-tmp/
-coverage/
+.pnpm-debug.log*
 
-# Vercel
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
 .vercel
 
-# Supabase CLI local cache
-supabase/.temp/
+# typescript
+*.tsbuildinfo
+next-env.d.ts

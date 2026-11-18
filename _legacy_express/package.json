@@ -1,0 +1,30 @@
+{
+  "name": "memonuvia",
+  "version": "1.0.0",
+  "description": "MemoNuvia.com — personalized photo slate e-commerce",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js",
+    "seed": "node scripts/seed-products.js",
+    "verify:supabase": "node scripts/verify-supabase.js",
+    "verify:hardening": "node scripts/apply-hardening-migration.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2",
+    "express-rate-limit": "^7.5.0",
+    "helmet": "^8.0.0",
+    "morgan": "^1.10.0",
+    "multer": "^2.5.0",
+    "stripe": "^17.7.0",
+    "uuid": "^11.1.0"
+  }
+}
